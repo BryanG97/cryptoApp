@@ -1,4 +1,4 @@
-package com.example.coinapp
+package com.example.coincapapp
 
 import org.junit.Test
 

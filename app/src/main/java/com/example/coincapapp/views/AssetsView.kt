@@ -1,4 +1,4 @@
-package com.example.coinapp.views
+package com.example.coincapapp.views
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,39 +16,36 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
-import com.example.coinapp.models.Asset
+import coil3.compose.AsyncImage
+import com.example.coincapapp.models.Asset
 
 @Composable
-fun AssetRow(asset: Asset){
+fun AssetRow(asset: Asset) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-    ){
-
-        Icon(
-            imageVector = Icons.Filled.CheckCircle,
-            contentDescription = null,
-            tint = Color.Red,
-            modifier = Modifier.padding(horizontal = 8.dp)
-        )
+    ) {
+//        Icon(
+//            imageVector = Icons.Filled.CheckCircle,
+//            contentDescription = null,
+//            tint = Color.Red,
+//            modifier = Modifier.padding(horizontal = 8.dp)
+//        )
 
         AsyncImage(
-            model = "https://assets.coincap.io/assets/icons/${asset.symbol.toLowerCase()}@2x.png",
+            model = "https://assets.coincap.io/assets/icons/${asset.symbol.lowercase()}@2x.png",
             contentDescription = null
         )
 
-        Column{
+        Column {
             Text(
                 text = asset.symbol,
                 fontSize = 18.sp
             )
-
             Text(
                 text = asset.name,
                 fontSize = 14.sp
@@ -57,53 +54,50 @@ fun AssetRow(asset: Asset){
 
         Spacer(modifier = Modifier.weight(1f))
 
-        /*Icon(
-            imageVector = Icons.Filled.KeyboardArrowUp,
-            contentDescription = null,
-            tint = Color.Green
-        )*/
         Text(
             text = "${asset.percentage}%",
             fontSize = 16.sp,
             modifier = Modifier.padding(horizontal = 16.dp),
-            color = if(asset.percentage >= 0) Color.Green else Color.Red
+            color = if (asset.percentage >= 0) Color.Green else Color.Red
         )
 
         Text(
-            text = "$ ${asset.price}",
+            text = "$${asset.price}",
             fontSize = 16.sp,
-            modifier = Modifier.padding(horizontal = 8.dp)
+            modifier = Modifier.padding(horizontal = 16.dp)
         )
-
     }
 }
 
 @Preview(
-    showBackground = true,
-    //showSystemUi = true
+    showBackground = true
+//    showSystemUi = true
 )
 @Composable
-fun AssetRowPreview(){
+fun AssetRowPreview() {
     Column(
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize()
     ) {
         AssetRow(
-            Asset(id = "1",
+            Asset(
+                id = "1",
                 name = "Bitcoin",
                 symbol = "BTC",
                 percentage = 5.38,
-                price = "87908"
+                price = "87800"
             )
         )
         Spacer(modifier = Modifier.size(16.dp))
         AssetRow(
-            Asset(id = "2",
+            Asset(
+                id = "2",
                 name = "Ethereum",
                 symbol = "ETH",
                 percentage = -8.28,
                 price = "1800"
             )
         )
+
     }
 }
